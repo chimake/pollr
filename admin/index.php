@@ -4,11 +4,8 @@
     <?php include "plugin/session.php";?>
    <?php include "template/meta.php";?>
     <?php include "template/siteStylesheet.php"; ?>
-
-
-
-
-    </head>
+    <?php $page="home";?>
+        </head>
 
 
     <body class="fixed-left">

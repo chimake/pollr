@@ -1,3 +1,7 @@
+<?php
+$thecurrentPage = $_SERVER['REQUEST_URI'];
+
+?>
 <div class="left side-menu">
     <div class="sidebar-inner slimscrollleft">
 
@@ -30,13 +34,16 @@
             <ul>
                 <li class="text-muted menu-title">Navigation</li>
                 <li>
-
-                    <a href="index.php" class="waves-effect"><i class="zmdi zmdi-view-dashboard"></i> <span> Home </span>
-                    </a>
+                    <a href="index.php" class="<?php if ($page=="home"){echo "active";}else{echo "waves-effect";}?>"><i class="zmdi zmdi-home"></i> <span> Home </span></a>
+                </li>
+                <li>
+                    <a href="index.php" class="<?php if ($page=="adminusers"){echo "active";}else{echo "";}?>"><i class="zmdi zmdi-accounts-outline"></i> <span> Admin Users </span></a>
+                </li>
+                <li>
+                    <a href="index.php" class="<?php if ($page=="pollrusers"){echo "active";}else{echo "";}?>"><i class="zmdi zmdi-male-female"></i> <span> Pollr App Users </span></a>
                 </li>
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><span>All Html</span><span
-                                class="menu-arrow"></span> </a>
+                    <a href="javascript:void(0);" class=""><span>All Html</span><span class="menu-arrow"></span> </a>
                     <ul class="list-unstyled">
                         <li>
 
