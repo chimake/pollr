@@ -26,8 +26,8 @@
         // If result matched $myusername and $mypassword, table row must be 1 row
 
         if ($count == 1) {
-            session_register("myusername");
-            $_SESSION['login_user'] = $myusername;
+
+            $_SESSION['userId'] = $active;
 
             header("location: index.php");
         } else {
