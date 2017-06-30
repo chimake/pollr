@@ -1,5 +1,5 @@
 <?php
-
+include_once'../User.php';
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
@@ -15,6 +15,10 @@ if (isset($_POST['page']) && !empty($_POST['page'])) {
         case 'login':
             $Auth = new Auth();
             echo $Auth->userlogin();
+            break;
+        case  'pollrAdd':
+            $Auth = new Auth();
+            echo $Auth->pollrAdd();
             break;
     }
 }
@@ -37,39 +41,38 @@ class Auth {
     function usersregister() {
         $thefirstname = $_POST['thefirstname'];
         $thelastname = $_POST['thelastname'];
-        $theusername = $_POST['theusername'];
         $theemailaddr = $_POST['theemailaddr'];
         $thepassword = $_POST['thepassword'];
-        $birthday = $_POST['birthday'];
-        $birthmonth = $_POST['birthmonth'];
-        $birthyear = $_POST['birthyear'];
         $thesex = $_POST['thesex'];
-        $thecity = $_POST['thecity'];
-        $thecountry = $_POST['thecountry'];
         $encpass = md5($thepassword);
-        $time_keeper = date("Y-m-d h:i:sa");
-        $occuranceQuery = "SELECT user_id FROM user_table WHERE user_name='$theusername' OR user_email='$theemailaddr'";
-        $SearchQuery = mysqli_query($this->db, $occuranceQuery);
-        if ($SearchQuery){
-                  $searchforOccurance = mysqli_num_rows($SearchQuery);
-        if($searchforOccurance > 0){
-            echo "picked";
-        }else{
-            $insertUserQuery = "INSERT INTO user_table SET first_name='$thefirstname',last_name='$thelastname',user_name='$theusername',user_password='$encpass',"
-                    . "user_dob='$birthday/$birthmonth/$birthyear',user_sex='$thesex',user_city='$thecity',user_country='$thecountry',user_email='$theemailaddr',"
-                    . "created_on='$time_keeper',update_on='',created_from='Form',active='1'";
-            $runtheInsertQuery = mysqli_query($this->db, $insertUserQuery);
-            if($runtheInsertQuery){
-                echo 'done';
-            } else {
-                echo $insertUserQuery;
-            }
-        }  
-        } else {
-            $occuranceQuery;
-        }
 
-            
+        $today = date('YmdHi');
+        $startDate = date('YmdHi', strtotime('2017-06-28 09:06:00'));
+        $range = $today - $startDate;
+        $rand = mt_rand(0, $range);
+        $genRand = ($startDate + $rand);
+
+        $user = new User();
+
+        // Insert or update user data to the database
+        $websiteUserData = array(
+            'oauth_provider'=> 'Website',
+            'oauth_uid' 	=> $genRand,
+            'first_name' 	=> $thefirstname,
+            'last_name' 	=> $thelastname,
+            'email' 		=> $theemailaddr,
+            'passwordenc'   => $encpass,
+            'gender' 		=> $thesex,
+            'locale' 		=> '',
+            'picture' 		=> '',
+            'link' 			=> ''
+        );
+        $userData = $user->checkUser($websiteUserData);
+
+        // Put user data into session
+        $_SESSION['userData'] = $userData;
+        $mainQuery = $user->checkUser();
+        echo $mainQuery;
         
     }
     
@@ -94,6 +97,24 @@ class Auth {
             echo $finduserQuery;
         }
         
+    }
+
+    function  pollrAdd(){
+        $thetitle = $_POST['theTitle'];
+        $thefirstchoice = $_POST['firstchoice'];
+        $thesecChoice = $_POST['secChoice'];
+        $thirdchoice = $_POST['thirdchoice'];
+        $fourthChoice = $_POST['fourthcchoice'];
+        $user_id = $_POST['userid'];
+        $time_keeper = date("Y-m-d h:i:sa");
+        $insertQuery = "INSERT INTO  posttbl SET userid='$user_id',post_title='$thetitle',option1='$thefirstchoice',option2='$thesecChoice',option3='$thirdchoice',option4='$fourthChoice',category='0',approve='1',created_by='$user_id',update_by='0',created_on='$time_keeper',updated_on=''";
+        $runQuery = mysqli_query($this->db,$insertQuery);
+
+        if ($runQuery){
+            echo "worked";
+        }else{
+            echo $insertQuery;
+        }
     }
 
 }

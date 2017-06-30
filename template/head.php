@@ -12,6 +12,8 @@
 		<link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/ionicons.min.css" />
     <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/facebook.css" />
+    <link rel="stylesheet" href="css/sweetalert.css" />
     <link href="css/emoji.css" rel="stylesheet">
     
     <!--Google Font-->

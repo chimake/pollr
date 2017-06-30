@@ -6,8 +6,9 @@ include_once 'facebooklogin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <?php include 'plugin/usercheck.php';?>
+
     <?php include 'template/connector.php';?>
+    <?php include 'plugin/usercheck.php';?>
     <?php include 'template/head.php'; ?>
     <body>
 
@@ -22,313 +23,56 @@ include_once 'facebooklogin.php';
 
                     <!-- Newsfeed Common Side Bar Left
                     ================================================= -->
-                    <div class="col-md-3 static">
-                        <div class="profile-card">
-                            <img src="<?php echo $userData['picture'];?>" alt="user" class="profile-photo" />
-                            <h5><a href="timeline.html" class="text-white"><?php echo $userData['first_name'].' '.$userData['last_name'];?></a></h5>
-                            <a href="<?php echo $logoutURL; ?>" class="text-white"><i class="ion ion-log-out"></i> Logout</a>
-                        </div><!--profile card ends-->
-                        <ul class="nav-news-feed">
-                            <li><i class="icon ion-ios-paper"></i><div><a href="newsfeed.html">My Newsfeed</a></div></li>
-                            <li><i class="icon ion-ios-people"></i><div><a href="newsfeed-people-nearby.html">People Nearby</a></div></li>
-                            <li><i class="icon ion-ios-people-outline"></i><div><a href="newsfeed-friends.html">Friends</a></div></li>
-                            <li><i class="icon ion-chatboxes"></i><div><a href="newsfeed-messages.html">Messages</a></div></li>
-                            <li><i class="icon ion-images"></i><div><a href="newsfeed-images.html">Images</a></div></li>
-                            <li><i class="icon ion-ios-videocam"></i><div><a href="newsfeed-videos.html">Videos</a></div></li>
-                        </ul><!--news-feed links ends-->
-                        <div id="chat-block">
-                            <div class="title">Chat online</div>
-                            <ul class="online-users list-inline">
-                                <li><a href="newsfeed-messages.html" title="Linda Lohan"><img src="images/users/user-2.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                                <li><a href="newsfeed-messages.html" title="Sophia Lee"><img src="images/users/user-3.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                                <li><a href="newsfeed-messages.html" title="John Doe"><img src="images/users/user-4.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                                <li><a href="newsfeed-messages.html" title="Alexis Clark"><img src="images/users/user-5.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                                <li><a href="newsfeed-messages.html" title="James Carter"><img src="images/users/user-6.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                                <li><a href="newsfeed-messages.html" title="Robert Cook"><img src="images/users/user-7.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                                <li><a href="newsfeed-messages.html" title="Richard Bell"><img src="images/users/user-8.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                                <li><a href="newsfeed-messages.html" title="Anna Young"><img src="images/users/user-9.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                                <li><a href="newsfeed-messages.html" title="Julia Cox"><img src="images/users/user-10.jpg" alt="user" class="img-responsive profile-photo" /><span class="online-dot"></span></a></li>
-                            </ul>
-                        </div><!--chat block ends-->
-                    </div>
-                    <div class="col-md-7">
+                    <?php include 'template/lefthand.php'; ?>
+                    <div class="col-md-9">
 
                         <!-- Post Create Box
                         ================================================= -->
                         <div class="create-post">
                             <div class="row">
-                                <div class="col-md-7 col-sm-7">
-                                    <div class="form-group">
-                                        <img src="images/users/user-1.jpg" alt="" class="profile-photo-md" />
-                                        <textarea name="texts" id="exampleTextarea" cols="30" rows="1" class="form-control" placeholder="Write what you wish"></textarea>
-                                    </div>
+                                <div class="col-md-3 col-sm-3">
+                                    <h2>Polls</h2>
                                 </div>
-                                <div class="col-md-5 col-sm-5">
-                                    <div class="tools">
-                                        <ul class="publishing-tools list-inline">
-                                            <li><a href="#"><i class="ion-compose"></i></a></li>
-                                            <li><a href="#"><i class="ion-images"></i></a></li>
-                                            <li><a href="#"><i class="ion-ios-videocam"></i></a></li>
-                                            <li><a href="#"><i class="ion-map"></i></a></li>
-                                        </ul>
-                                        <button class="btn btn-primary pull-right">Publish</button>
-                                    </div>
-                                </div>
+
                             </div>
                         </div><!-- Post Create Box End-->
 
                         <!-- Post Content
                         ================================================= -->
-                        <div class="post-content">
-                            <img src="images/post-images/1.jpg" alt="post-image" class="img-responsive post-image" />
-                            <div class="post-container">
-                                <img src="images/users/user-5.jpg" alt="user" class="profile-photo-md pull-left" />
-                                <div class="post-detail">
-                                    <div class="user-info">
-                                        <h5><a href="timeline.html" class="profile-link">Alexis Clark</a> <span class="following">following</span></h5>
-                                        <p class="text-muted">Published a photo about 3 mins ago</p>
-                                    </div>
-                                    <div class="reaction">
-                                        <a class="btn text-green"><i class="icon ion-thumbsup"></i> 13</a>
-                                        <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
-                                    </div>
-                                    <div class="line-divider"></div>
-                                    <div class="post-text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
-                                    </div>
-                                    <div class="line-divider"></div>
-                                    <div class="post-comment">
-                                        <img src="images/users/user-11.jpg" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.html" class="profile-link">Diana </a><i class="em em-laughing"></i> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-                                    </div>
-                                    <div class="post-comment">
-                                        <img src="images/users/user-4.jpg" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.html" class="profile-link">John</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud </p>
-                                    </div>
-                                    <div class="post-comment">
-                                        <img src="images/users/user-1.jpg" alt="" class="profile-photo-sm" />
-                                        <input type="text" class="form-control" placeholder="Post a comment">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Post Content
-                        ================================================= -->
-                        <div class="post-content">
-                            <video class="post-video" controls> <source src="videos/8.mp4" type="video/mp4"> </video>
-                            <div class="post-container">
-                                <img src="images/users/user-3.jpg" alt="user" class="profile-photo-md pull-left" />
-                                <div class="post-detail">
-                                    <div class="user-info">
-                                        <h5><a href="timeline.html" class="profile-link">Sophia Lee</a> <span class="following">following</span></h5>
-                                        <p class="text-muted">Updated her status about 33 mins ago</p>
-                                    </div>
-                                    <div class="reaction">
-                                        <a class="btn text-green"><i class="icon ion-thumbsup"></i> 75</a>
-                                        <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 8</a>
-                                    </div>
-                                    <div class="line-divider"></div>
-                                    <div class="post-text">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                                    </div>
-                                    <div class="line-divider"></div>
-                                    <div class="post-comment">
-                                        <img src="images/users/user-14.jpg" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.html" class="profile-link">Olivia </a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <i class="em em-anguished"></i> Ut enim ad minim veniam, quis nostrud </p>
-                                    </div>
-                                    <div class="post-comment">
-                                        <img src="images/users/user-1.jpg" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.html" class="profile-link">Sarah</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                                    </div>
-                                    <div class="post-comment">
-                                        <img src="images/users/user-2.jpg" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.html" class="profile-link">Linda</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                    </div>
-                                    <div class="post-comment">
-                                        <img src="images/users/user-1.jpg" alt="" class="profile-photo-sm" />
-                                        <input type="text" class="form-control" placeholder="Post a comment">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <?php
+                                $selectQuery = "SELECT * FROM  posttbl  WHERE approve=1";
+                                $runQuery = mysqli_query($con,$selectQuery);
+                                while ($postdata = mysqli_fetch_array($runQuery)){
+                                    $postId = $postdata['postid'];
+                                    $userid = $postdata['userid'];
+                                    $post_title = $postdata['post_title'];
+                                    $fistOption = $postdata['option1'];
+                                    $option2 = $postdata['option2'];
+                                    $option3 = $postdata['option3'];
+                                    $option4 = $postdata['option4'];
+                                    $category = $postdata['category'];
+                                    $created_on = $postdata['created_on'];
+                                    $fetchUser = "SELECT first_name,last_name FROM users WHERE id='$userid'";
+                                    $runQ = mysqli_query($con,$fetchUser);
+                                    $fetres = mysqli_fetch_array($runQ);
+                                    $first_name = $fetres['first_name'];
+                                    $last_name = $fetres['last_name'];
+                                    echo "<div class=\"post-content\"><ul class='list-group trip-details'>"
+                                         ."<li class='list-group-item'><input class='choice1' type='radio' id='choice1' data-postid='$postId' value='$fistOption' /><lable for='choice1' class='mixed'>$fistOption</lable></li>"
+                                        ."<li class='list-group-item'><input class='choice2' type='radio' id='choice2' data-postid='$postId' value='$option2' /><lable for='choice2' class='mixed'>$option2</lable></li>"
+                                        ."<li class='list-group-item'><input class='choice3' type='radio' id='choice3' data-postid='$postId' value='$option3' /><lable for='choice2' class='mixed'>$option3</lable></li>"
+                                        ."<li class='list-group-item'><input class='choice4' type='radio' id='choice4' data-postid='$postId' value='$option4' /><lable for='choice2' class='mixed'>$option4</lable></li>"
+                                        ."</ul></div>";
+                                }
+                            ?>
 
-                        <!-- Post Content
-                        ================================================= -->
-                        <div class="post-content">
-                            <div class="post-container">
-                                <img src="images/users/user-2.jpg" alt="user" class="profile-photo-md pull-left" />
-                                <div class="post-detail">
-                                    <div class="user-info">
-                                        <h5><a href="timeline.html" class="profile-link">Linda Lohan</a> <span class="following">following</span></h5>
-                                        <p class="text-muted">Published a photo about 1 hour ago</p>
-                                    </div>
-                                    <div class="reaction">
-                                        <a class="btn text-green"><i class="icon ion-thumbsup"></i> 23</a>
-                                        <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 4</a>
-                                    </div>
-                                    <div class="line-divider"></div>
-                                    <div class="post-text">
-                                        <p><i class="em em-thumbsup"></i> <i class="em em-thumbsup"></i> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-                                    </div>
-                                    <div class="line-divider"></div>
-                                    <div class="post-comment">
-                                        <img src="images/users/user-12.jpg" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.html" class="profile-link">Cris </a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam <i class="em em-muscle"></i></p>
-                                    </div>
-                                    <div class="post-comment">
-                                        <img src="images/users/user-1.jpg" alt="" class="profile-photo-sm" />
-                                        <input type="text" class="form-control" placeholder="Post a comment">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Post Content
-                        ================================================= -->
-                        <div class="post-content">
-                            <img src="images/post-images/2.jpg" alt="post-image" class="img-responsive post-image" />
-                            <div class="post-container">
-                                <img src="images/users/user-4.jpg" alt="user" class="profile-photo-md pull-left" />
-                                <div class="post-detail">
-                                    <div class="user-info">
-                                        <h5><a href="timeline.html" class="profile-link">John Doe</a> <span class="following">following</span></h5>
-                                        <p class="text-muted">Published a photo about 2 hour ago</p>
-                                    </div>
-                                    <div class="reaction">
-                                        <a class="btn text-green"><i class="icon ion-thumbsup"></i> 39</a>
-                                        <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 2</a>
-                                    </div>
-                                    <div class="line-divider"></div>
-                                    <div class="post-text">
-                                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt</p>
-                                    </div>
-                                    <div class="line-divider"></div>
-                                    <div class="post-comment">
-                                        <img src="images/users/user-13.jpg" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.html" class="profile-link">Brian </a>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
-                                    </div>
-                                    <div class="post-comment">
-                                        <img src="images/users/user-8.jpg" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.html" class="profile-link">Richard</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                    </div>
-                                    <div class="post-comment">
-                                        <img src="images/users/user-1.jpg" alt="" class="profile-photo-sm" />
-                                        <input type="text" class="form-control" placeholder="Post a comment">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Post Content
-                        ================================================= -->
-                        <div class="post-content">
-                            <div class="google-maps">
-                                <div id="map" class="map"></div>
-                            </div>
-                            <div class="post-container">
-                                <img src="images/users/user-3.jpg" alt="user" class="profile-photo-md pull-left" />
-                                <div class="post-detail">
-                                    <div class="user-info">
-                                        <h5><a href="timeline.html" class="profile-link">Sophia Lee</a> <span class="following">following</span></h5>
-                                        <p class="text-muted"><i class="icon ion-ios-location"></i> Went to Niagara Falls today</p>
-                                    </div>
-                                    <div class="reaction">
-                                        <a class="btn text-green"><i class="icon ion-thumbsup"></i> 17</a>
-                                        <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
-                                    </div>
-                                    <div class="line-divider"></div>
-                                    <div class="post-text">
-                                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p>
-                                    </div>
-                                    <div class="line-divider"></div>
-                                    <div class="post-comment">
-                                        <img src="images/users/user-1.jpg" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.html" class="profile-link">Sarah </a>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. <i class="em em-blush"></i> <i class="em em-blush"></i> </p>
-                                    </div>
-                                    <div class="post-comment">
-                                        <img src="images/users/user-1.jpg" alt="" class="profile-photo-sm" />
-                                        <input type="text" class="form-control" placeholder="Post a comment">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Post Content
-                        ================================================= -->
-                        <div class="post-content">
-                            <img src="images/post-images/11.jpg" alt="" class="img-responsive post-image" />
-                            <div class="post-container">
-                                <img src="images/users/user-9.jpg" alt="user" class="profile-photo-md pull-left" />
-                                <div class="post-detail">
-                                    <div class="user-info">
-                                        <h5><a href="timeline.html" class="profile-link">Anna Young</a> <span class="following">following</span></h5>
-                                        <p class="text-muted">Published a photo about 4 hour ago</p>
-                                    </div>
-                                    <div class="reaction">
-                                        <a class="btn text-green"><i class="icon ion-thumbsup"></i> 2</a>
-                                        <a class="btn text-red"><i class="fa fa-thumbs-down"></i> 0</a>
-                                    </div>
-                                    <div class="line-divider"></div>
-                                    <div class="post-text">
-                                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
-                                    </div>
-                                    <div class="line-divider"></div>
-                                    <div class="post-comment">
-                                        <img src="images/users/user-10.jpg" alt="" class="profile-photo-sm" />
-                                        <p><a href="timeline.html" class="profile-link">Julia </a>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-                                    </div>
-                                    <div class="post-comment">
-                                        <img src="images/users/user-1.jpg" alt="" class="profile-photo-sm" />
-                                        <input type="text" class="form-control" placeholder="Post a comment">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <!-- Newsfeed Common Side Bar Right
                     ================================================= -->
-                    <div class="col-md-2 static">
-                        <div class="suggestions" id="sticky-sidebar">
-                            <h4 class="grey">Who to Follow</h4>
-                            <div class="follow-user">
-                                <img src="images/users/user-11.jpg" alt="" class="profile-photo-sm pull-left" />
-                                <div>
-                                    <h5><a href="timeline.html">Diana Amber</a></h5>
-                                    <a href="#" class="text-green">Add friend</a>
-                                </div>
-                            </div>
-                            <div class="follow-user">
-                                <img src="images/users/user-12.jpg" alt="" class="profile-photo-sm pull-left" />
-                                <div>
-                                    <h5><a href="timeline.html">Cris Haris</a></h5>
-                                    <a href="#" class="text-green">Add friend</a>
-                                </div>
-                            </div>
-                            <div class="follow-user">
-                                <img src="images/users/user-13.jpg" alt="" class="profile-photo-sm pull-left" />
-                                <div>
-                                    <h5><a href="timeline.html">Brian Walton</a></h5>
-                                    <a href="#" class="text-green">Add friend</a>
-                                </div>
-                            </div>
-                            <div class="follow-user">
-                                <img src="images/users/user-14.jpg" alt="" class="profile-photo-sm pull-left" />
-                                <div>
-                                    <h5><a href="timeline.html">Olivia Steward</a></h5>
-                                    <a href="#" class="text-green">Add friend</a>
-                                </div>
-                            </div>
-                            <div class="follow-user">
-                                <img src="images/users/user-15.jpg" alt="" class="profile-photo-sm pull-left" />
-                                <div>
-                                    <h5><a href="timeline.html">Sophia Page</a></h5>
-                                    <a href="#" class="text-green">Add friend</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -336,62 +80,8 @@ include_once 'facebooklogin.php';
         <!-- Footer
         ================================================= -->
         <footer id="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-wrapper">
-                        <div class="col-md-3 col-sm-3">
-                            <a href="#"><img src="images/logo-black.png" alt="" class="footer-logo" /></a>
-                            <ul class="list-inline social-icons">
-                                <li><a href="#"><i class="icon ion-social-facebook"></i></a></li>
-                                <li><a href="#"><i class="icon ion-social-twitter"></i></a></li>
-                                <li><a href="#"><i class="icon ion-social-googleplus"></i></a></li>
-                                <li><a href="#"><i class="icon ion-social-pinterest"></i></a></li>
-                                <li><a href="#"><i class="icon ion-social-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-2 col-sm-2">
-                            <h5>For individuals</h5>
-                            <ul class="footer-links">
-                                <li><a href="#">Signup</a></li>
-                                <li><a href="#">login</a></li>
-                                <li><a href="#">Explore</a></li>
-                                <li><a href="#">Finder app</a></li>
-                                <li><a href="#">Features</a></li>
-                                <li><a href="#">Language settings</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-2 col-sm-2">
-                            <h5>For businesses</h5>
-                            <ul class="footer-links">
-                                <li><a href="#">Business signup</a></li>
-                                <li><a href="#">Business login</a></li>
-                                <li><a href="#">Benefits</a></li>
-                                <li><a href="#">Resources</a></li>
-                                <li><a href="#">Advertise</a></li>
-                                <li><a href="#">Setup</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-2 col-sm-2">
-                            <h5>About</h5>
-                            <ul class="footer-links">
-                                <li><a href="#">About us</a></li>
-                                <li><a href="#">Contact us</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Terms</a></li>
-                                <li><a href="#">Help</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-3 col-sm-3">
-                            <h5>Contact Us</h5>
-                            <ul class="contact">
-                                <li><i class="icon ion-ios-telephone-outline"></i>+1 (234) 222 0754</li>
-                                <li><i class="icon ion-ios-email-outline"></i>info@thunder-team.com</li>
-                                <li><i class="icon ion-ios-location-outline"></i>228 Park Ave S NY, USA</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
             <div class="copyright">
                 <p>Thunder Team © 2016. All rights reserved</p>
             </div>
@@ -399,7 +89,67 @@ include_once 'facebooklogin.php';
 
         <!--preloader-->
         <div id="spinner-wrapper">
-            <div class="spinner"></div>
+            <div class="spinner"><img src="images/logo.png" alt="logo" />
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="post" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Add Polls</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-danger alert-dismissable fade in" id="errorhandle">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
+
+                        </div>
+                        <form>
+                            <div class="form-group">
+                                <label for="email">Poll Title</label>
+                                <input type="text" class="form-control" id="pollTitle" placeholder="Poll Title" data-placeholder="Poll Title">
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="email"></label>
+                                        <input type="text" class="form-control" id="choicefixed1" placeholder="Choice 1">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="email"></label>
+                                        <input type="text" class="form-control" id="choicefixed2" placeholder="Choice 2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="newBox">
+
+                            </div>
+                            <div class="row">
+                                <div id="error"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <button type="button" id="fieldadd" class="btn btn-success">+ Add</button>
+                                    <button type="button" id="fieldremove" class="btn btn-danger hidden">X Remove</button>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary btn-success" id="formStm">Submit</button>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
         <!-- Scripts
@@ -410,6 +160,80 @@ include_once 'facebooklogin.php';
         <script src="js/jquery.sticky-kit.min.js"></script>
         <script src="js/jquery.scrollbar.min.js"></script>
         <script src="js/script.js"></script>
+        <script src="js/sweetalert.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#errorhandle").addClass("hidden");
+            var counter = 2;
+            $("#fieldadd").click(function () {
+                $("#fieldremove").removeClass("hidden");
+                if (counter == 3){
+                    $("#fieldadd").addClass("hidden");
+                }
+                counter++;
+                var newtextbox  = $(document.createElement('div'))
+                    .attr("class",'col-sm-6');
+                newtextbox.after().html('<input type="text" class="form-control"" name="choice'+counter+'" id="choice'+counter+'" placeholder="Choice '+counter+'">');
+                newtextbox.appendTo("#newBox");
+
+            });
+            $("#fieldremove").click(function () {
+                if (counter > 2){
+                    $("#choice"+counter).remove();
+                    counter--;
+                    if (counter == 2){
+                        $("#fieldremove").addClass("hidden");
+                        $("#fieldadd").removeClass("hidden");
+                    }
+                }
+
+
+            });
+            $("#formStm").click(function () {
+               var theTitle = $("#pollTitle").val();
+               var fisrchoice = $("#choicefixed1").val();
+               var secChoice = $("#choicefixed2").val();
+               var thirdchoice = $("#choice3").val();
+               var fourthcchoice = $("#choice4").val();
+               var userid = $("#userID").html();
+               var page = "pollrAdd";
+               var dataString = "theTitle="+theTitle+"&firstchoice="+fisrchoice+"&secChoice="+secChoice+"&thirdchoice="+thirdchoice+"&fourthcchoice="+fourthcchoice+"&page="+page+"&userid="+userid;
+               if (theTitle==''){
+                   var place = $("#pollTitle").attr("placeholder");
+                    $("#errorhandle").removeClass("hidden");
+                    $("#errorhandle").html("<b>"+place+"</b>  shouldn't be empty");
+               }else if(fisrchoice == ''){
+                   var plaeholder1 = $("#choicefixed1").attr("placeholder");
+                   $("#errorhandle").removeClass("hidden");
+                   $("#errorhandle").html("<b>"+plaeholder1+"</b>  shouldn't be empty");
+               }else if(secChoice == ''){
+                   var placeholder2 = $("#choicefixed2").attr("placeholder");
+                   $("#errorhandle").removeClass("hidden");
+                   $("#errorhandle").html("<b>"+placeholder2+"</b>  shouldn't be empty");
+               }else {
+                   $("#errorhandle").addClass("hidden");
+
+                   $.ajax({
+                       type: "POST",
+                       url: "plugin/handler.php",
+                       data: dataString,
+                       cache: false,
+                       success: function (result) {
+                           if (result == "worked") {
+                               swal("Poll Added", "");
+                               window.open("index.php", "_self");
+                           } else {
+                               $("#errorhandle").removeClass("hidden");
+                               $("#errorhandle").html(result);
+                           }
+
+                       }
+                   });
+               }
+
+            });
+        });
+    </script>
     </body>
 
 

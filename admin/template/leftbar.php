@@ -37,7 +37,7 @@ $thecurrentPage = $_SERVER['REQUEST_URI'];
                     <a href="index.php" class="<?php if ($page=="home"){echo "active";}else{echo "waves-effect";}?>"><i class="zmdi zmdi-home"></i> <span> Home </span></a>
                 </li>
                 <li>
-                    <a href="index.php" class="<?php if ($page=="adminusers"){echo "active";}else{echo "";}?>"><i class="zmdi zmdi-accounts-outline"></i> <span> Admin Users </span></a>
+                    <a href="adminusers.php" class="<?php if ($page=="adminusers"){echo "active";}else{echo "";}?>"><i class="zmdi zmdi-accounts-outline"></i> <span> Admin Users </span></a>
                 </li>
                 <li>
                     <a href="index.php" class="<?php if ($page=="pollrusers"){echo "active";}else{echo "";}?>"><i class="zmdi zmdi-male-female"></i> <span> Pollr App Users </span></a>

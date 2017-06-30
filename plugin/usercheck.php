@@ -3,9 +3,15 @@ if ($userData['email'] =='') {
     header("Location:register.php");
     exit();
 } else {
-    $signedUser = $userData['oauth_uid'];
     $id = $userData["oauth_uid"];
-    $theinform = $userData['first_name'];
+    $fetcuserId = "SELECT id FROM users WHERE oauth_uid='$id'";
+    $runfetcQuery = mysqli_query($con,$fetcuserId);
+    $result = mysqli_fetch_array($runfetcQuery);
+    $userID = $result['id'];
+    $thefirstname = $userData['first_name'];
+    $thelastname = $userData['last_name'];
+    $thepicture = $userData['picture'];
+
 
 }
 ?>

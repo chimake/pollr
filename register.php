@@ -83,12 +83,7 @@ $loginURL = $helper->getLoginUrl($redirectURL, $fbPermissions);
                                                 <input id="thelastname" class="form-control input-group-lg" type="text" name="lastname" title="Enter last name" placeholder="Last name"/>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="form-group col-xs-12">
-                                                <label for="theusername" class="sr-only">User Name</label>
-                                                <input id="theusername" class="form-control input-group-lg" type="text" name="username" title="Enter User Name" placeholder="Your User Name"/>
-                                            </div>
-                                        </div>
+
                                         <div class="row">
                                             <div class="form-group col-xs-12">
                                                 <label for="theemailaddr" class="sr-only">Email</label>
@@ -107,49 +102,7 @@ $loginURL = $helper->getLoginUrl($redirectURL, $fbPermissions);
                                                 <input id="thecpassword" class="form-control input-group-lg" type="password" name="cpassword" title="Confirm password" placeholder="Confirm Password"/>
                                             </div>
                                         </div>                                        
-                                        <div class="row">
-                                            <p class="birth"><strong>Date of Birth</strong></p>
-                                            <div class="form-group col-sm-3 col-xs-6">
-                                                <label for="birthday" class="sr-only"></label>
-                                                <select class="form-control" id="birthday">
-                                                    <option value="Day" disabled selected>Day</option>
-                                                    <?php
-                                                    for ($iCounter = 1; $iCounter <= 31; $iCounter++) {
-                                                        echo '<option value=' . "$iCounter" . '>' . $iCounter . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-sm-3 col-xs-6">
-                                                <label for="birthmonth" class="sr-only"></label>
-                                                <select class="form-control" id="birthmonth">
-                                                    <option value="month" disabled selected>Month</option>
-                                                    <option value="jan">Jan</option>
-                                                    <option value="feb">Feb</option>
-                                                    <option value="mar">Mar</option>
-                                                    <option value="apr">Apr</option>
-                                                    <option value="may">May</option>
-                                                    <option value="jun">Jun</option>
-                                                    <option value="jul">Jul</option>
-                                                    <option value="aug">Aug</option>
-                                                    <option value="sep">Sep</option>
-                                                    <option value="oct">Oct</option>
-                                                    <option value="nov">Nov</option>
-                                                    <option value="dec">Dec</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-sm-6 col-xs-12">
-                                                <label for="birthyear" class="sr-only"></label>
-                                                <select class="form-control" id="birthyear">
-                                                    <option value="year" disabled selected>Year</option>
-                                                    <?php
-                                                    for ($yCounter = 1986; $yCounter < date('Y'); $yCounter++) {
-                                                        echo '<option value=' . "$yCounter" . '>' . $yCounter . '</option>';
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
+
                                         <div class="form-group gender">
                                             <label class="radio-inline">
                                                 <input type="radio" value="male" id="thesex" name="optradio" checked>Male
@@ -158,28 +111,7 @@ $loginURL = $helper->getLoginUrl($redirectURL, $fbPermissions);
                                                 <input type="radio" id="thesex" value="female" name="optradio">Female
                                             </label>
                                         </div>
-                                        <div class="row">
-                                            <div class="form-group col-xs-6">
-                                                <label for="thecity" class="sr-only">City</label>
-                                                <input id="thecity" class="form-control input-group-lg reg_name" type="text" name="city" title="Enter city" placeholder="Your city"/>
-                                            </div>
-                                            <div class="form-group col-xs-6">
-                                                <label for="thecountry" class="sr-only"></label>
-                                                <select class="form-control" id="thecountry">
-                                                    <option value="country" disabled selected>Country</option>
-                                                    <?php
-                                                    $fetchCountry = "SELECT id,country_code,country_name FROM apps_countries ORDER BY country_name ASC";
-                                                    $runFetch = mysqli_query($con, $fetchCountry);
-                                                    while ($row = mysqli_fetch_array($runFetch)) {
-                                                        $theid = $row['id'];
-                                                        $thecountry_code = $row['country_code'];
-                                                        $thecountry_name = $row['country_name'];
-                                                        echo "<option value='$thecountry_code'>$thecountry_name</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
+
                                         <p><a href="#">Already have an account?</a></p>
                                         <input type="button" id="registerbtn" class="btn btn-primary" value="Register Now" />
                                     </form>
@@ -252,31 +184,20 @@ $loginURL = $helper->getLoginUrl($redirectURL, $fbPermissions);
             var theemailaddr;
             var thepassword;
             var thecpassword;
-            var birthday;
-            var birthmonth;
-            var birthyear;
             var thesex;
-            var thecity;
-            var thecountry;
             var page;
             $(document).ready(function () {
 
                 $("#registerbtn").click(function () {
                     thefirstname = $('#thefirstname').val();
                     thelastname = $('#thelastname').val();
-                    theusername = $('#theusername').val();
                     theemailaddr = $('#theemailaddr').val();
                     thepassword = $('#thepassword').val();
                     thecpassword = $('#thecpassword').val();
-                    birthday = $('#birthday').val();
-                    birthmonth = $('#birthmonth').val();
-                    birthyear = $('#birthyear').val();
                     thesex = $('#thesex').val();
-                    thecity = $('#thecity').val();
-                    thecountry = $('#thecountry').val();
                     page = 'usersregister';
-                    var dataString = 'thefirstname=' + thefirstname + '&thelastname=' + thelastname + '&theusername=' + theusername + '&theemailaddr=' + theemailaddr + '&thepassword=' + thepassword + '&birthday=' + birthday + '&birthmonth=' + birthmonth + '&birthyear=' + birthyear + '&thesex=' + thesex + '&thecity=' + thecity + '&thecountry=' + thecountry + '&page=' + page;
-                    if (thefirstname == '' || thelastname == '' || thepassword == '' || thecpassword == '' || birthday == '' || birthmonth == '' || birthyear == '' || thesex == '' || thecity == '' || thecountry == '') {
+                    var dataString = 'thefirstname=' + thefirstname + '&thelastname=' + thelastname + '&theemailaddr=' + theemailaddr + '&thepassword=' + thepassword + '&thesex=' + thesex + '&page=' + page;
+                    if (thefirstname == '' || thelastname == '' || thepassword == '' || thecpassword == '' || thesex == '' ) {
                         alert('All fields are requried');
                     } else if (thepassword != thecpassword) {
                         alert('passwords do not match');

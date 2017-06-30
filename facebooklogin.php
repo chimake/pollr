@@ -51,6 +51,7 @@ if(isset($accessToken)){
 		'first_name' 	=> $fbUserProfile['first_name'],
 		'last_name' 	=> $fbUserProfile['last_name'],
 		'email' 		=> $fbUserProfile['email'],
+		'passwordenc'	=> '',
 		'gender' 		=> $fbUserProfile['gender'],
 		'locale' 		=> $fbUserProfile['locale'],
 		'picture' 		=> $fbUserProfile['picture']['url'],
