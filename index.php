@@ -58,12 +58,16 @@ include_once 'facebooklogin.php';
                                     $fetres = mysqli_fetch_array($runQ);
                                     $first_name = $fetres['first_name'];
                                     $last_name = $fetres['last_name'];
+                                    $picturue = $fetres['picture'];
                                     echo "<div class=\"post-content\"><ul class='list-group trip-details'>"
                                          ."<li class='list-group-item'><input class='choice1' type='radio' id='choice1' data-postid='$postId' value='$fistOption' /><lable for='choice1' class='mixed'>$fistOption</lable></li>"
                                         ."<li class='list-group-item'><input class='choice2' type='radio' id='choice2' data-postid='$postId' value='$option2' /><lable for='choice2' class='mixed'>$option2</lable></li>"
                                         ."<li class='list-group-item'><input class='choice3' type='radio' id='choice3' data-postid='$postId' value='$option3' /><lable for='choice2' class='mixed'>$option3</lable></li>"
                                         ."<li class='list-group-item'><input class='choice4' type='radio' id='choice4' data-postid='$postId' value='$option4' /><lable for='choice2' class='mixed'>$option4</lable></li>"
-                                        ."</ul></div>";
+                                        ."</ul>"
+                                        ."<div class=\"post-container\">"
+                                        ." <img src=\"$picturue\" alt=\"user\" class=\"profile-photo-md pull-left\" />"
+                                        ."</div>";
                                 }
                             ?>
 
