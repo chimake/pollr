@@ -20,6 +20,10 @@ if (isset($_POST['page']) && !empty($_POST['page'])) {
             $Auth = new Auth();
             echo $Auth->pollrAdd();
             break;
+        case 'voteCaster':
+            $Auth = new Auth();
+            echo $Auth->voteCaster();
+            break;
     }
 }
 
@@ -110,6 +114,20 @@ class Auth {
         $insertQuery = "INSERT INTO  posttbl SET userid='$user_id',post_title='$thetitle',option1='$thefirstchoice',option2='$thesecChoice',option3='$thirdchoice',option4='$fourthChoice',category='0',approve='1',created_by='$user_id',update_by='0',created_on='$time_keeper',updated_on=''";
         $runQuery = mysqli_query($this->db,$insertQuery);
 
+        if ($runQuery){
+            echo "worked";
+        }else{
+            echo $insertQuery;
+        }
+    }
+
+    function voteCaster(){
+        $theChoice = $_POST['choice'];
+        $postId = $_POST['postId'];
+        $userIdn = $_POST['userIdn'];
+        $time_keeper = date("Y-m-d h:i:sa");
+        $insertQuery = "INSERT INTO vote SET postid='$postId',voterid='$userIdn',optionpicked='$theChoice',created_on='$time_keeper',updated_on='',created_by='$userIdn',updated_by='0'";
+        $runQuery = mysqli_query($this->db,$insertQuery);
         if ($runQuery){
             echo "worked";
         }else{

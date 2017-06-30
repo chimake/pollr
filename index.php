@@ -32,6 +32,7 @@ include_once 'facebooklogin.php';
                             <div class="row">
                                 <div class="col-md-3 col-sm-3">
                                     <h2>Polls</h2>
+                                    <div id="votingErrors"></div>
                                 </div>
 
                             </div>
@@ -53,20 +54,39 @@ include_once 'facebooklogin.php';
                                     $option4 = $postdata['option4'];
                                     $category = $postdata['category'];
                                     $created_on = $postdata['created_on'];
-                                    $fetchUser = "SELECT first_name,last_name FROM users WHERE id='$userid'";
+                                    $fetchUser = "SELECT first_name,last_name,picture FROM users WHERE oauth_uid='$userid'";
                                     $runQ = mysqli_query($con,$fetchUser);
                                     $fetres = mysqli_fetch_array($runQ);
                                     $first_name = $fetres['first_name'];
                                     $last_name = $fetres['last_name'];
                                     $picturue = $fetres['picture'];
-                                    echo "<div class=\"post-content\"><ul class='list-group trip-details'>"
-                                         ."<li class='list-group-item'><input class='choice1' type='radio' id='choice1' data-postid='$postId' value='$fistOption' /><lable for='choice1' class='mixed'>$fistOption</lable></li>"
-                                        ."<li class='list-group-item'><input class='choice2' type='radio' id='choice2' data-postid='$postId' value='$option2' /><lable for='choice2' class='mixed'>$option2</lable></li>"
-                                        ."<li class='list-group-item'><input class='choice3' type='radio' id='choice3' data-postid='$postId' value='$option3' /><lable for='choice2' class='mixed'>$option3</lable></li>"
-                                        ."<li class='list-group-item'><input class='choice4' type='radio' id='choice4' data-postid='$postId' value='$option4' /><lable for='choice2' class='mixed'>$option4</lable></li>"
+                                    $time_keeper = date("Y-m-d h:i:sa");
+                                    $dateDiff = intval((strtotime($created_on)-strtotime($time_keeper))/60);
+                                    $hours = intval($dateDiff/60);
+                                    $minutes = $dateDiff%60;
+                                    echo "<div class=\"post-content\">"
+                                        ."<ul class='list-group trip-details'>"
+                                         ."<li class='list-group-item'><input class='optionChosen' type='radio' id='choice1' data-choice='firstchoice' data-postid='$postId' value='$fistOption' /><lable for='choice1' class='mixed'>$fistOption</lable></li>"
+                                        ."<li class='list-group-item'><input class='optionChosen' type='radio' id='choice2' data-choice='secChoice' data-postid='$postId' value='$option2' /><lable for='choice2' class='mixed'>$option2</lable></li>"
+                                        ."<li class='list-group-item'><input class='optionChosen' type='radio' id='choice3' data-choice='thirdChoice' data-postid='$postId' value='$option3' /><lable for='choice2' class='mixed'>$option3</lable></li>"
+                                        ."<li class='list-group-item'><input class='optionChosen' type='radio' id='choice4' data-choice='fourthChoice' data-postid='$postId' value='$option4' /><lable for='choice2' class='mixed'>$option4</lable></li>"
                                         ."</ul>"
                                         ."<div class=\"post-container\">"
                                         ." <img src=\"$picturue\" alt=\"user\" class=\"profile-photo-md pull-left\" />"
+                                        ."<div class='post-detail'>"
+                                        ."<div class=\"user-info\">"
+                                        ."<h5><a href=\"#\" class=\"profile-link\">$first_name $last_name</a> <span class=\"following\"></span></h5>"
+                                        ."<p class=\"text-muted\">Published a poll about $hours hrs $minutes mins ago</p>"
+                                        ."</div>"
+                                        ."<div class=\"reaction\">"
+                                        ."<a class=\"btn text-green\"><i class=\"fa fa-check-square-o\"></i> </a>"
+                                        ."</div>"
+                                        ." <div class=\"line-divider\"></div>"
+                                        ."<div class=\"post-text\">"
+                                        ."<p>$post_title</p>"
+                                        ."</div>"
+                                        ."</div>"
+                                        ."</div>"
                                         ."</div>";
                                 }
                             ?>
@@ -83,13 +103,7 @@ include_once 'facebooklogin.php';
 
         <!-- Footer
         ================================================= -->
-        <footer id="footer">
-
-
-            <div class="copyright">
-                <p>Thunder Team © 2016. All rights reserved</p>
-            </div>
-        </footer>
+        <?php include "template/footer.php";?>
 
         <!--preloader-->
         <div id="spinner-wrapper">
@@ -98,63 +112,7 @@ include_once 'facebooklogin.php';
         </div>
 
         <!-- Modal -->
-        <div id="post" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Add Polls</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="alert alert-danger alert-dismissable fade in" id="errorhandle">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
-
-                        </div>
-                        <form>
-                            <div class="form-group">
-                                <label for="email">Poll Title</label>
-                                <input type="text" class="form-control" id="pollTitle" placeholder="Poll Title" data-placeholder="Poll Title">
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="email"></label>
-                                        <input type="text" class="form-control" id="choicefixed1" placeholder="Choice 1">
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="email"></label>
-                                        <input type="text" class="form-control" id="choicefixed2" placeholder="Choice 2">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" id="newBox">
-
-                            </div>
-                            <div class="row">
-                                <div id="error"></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <button type="button" id="fieldadd" class="btn btn-success">+ Add</button>
-                                    <button type="button" id="fieldremove" class="btn btn-danger hidden">X Remove</button>
-                                </div>
-                            </div>
-
-
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary btn-danger" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary btn-success" id="formStm">Submit</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+        <?php include "template/modalHome.php";?>
 
         <!-- Scripts
         ================================================= -->
@@ -235,6 +193,30 @@ include_once 'facebooklogin.php';
                    });
                }
 
+            });
+        });
+        $(".optionChosen").click(function () {
+           var choice =$(this).val();
+           var IDn = $(this).attr('id');
+
+           var postId =$(this).data("postid");
+           var page ="voteCaster";
+           var userIdn = $("#userID").html();
+           var dataString = "choice="+choice+"&postId="+postId+"&page="+page+"&userIdn="+userIdn;
+            $.ajax({
+                type: "POST",
+                url: "plugin/handler.php",
+                data: dataString,
+                cache: false,
+                success: function (result) {
+                    if (result == "worked") {
+                        swal("Vote Added", "");
+                        $(IDn).attr('checked','checked');
+                    } else {
+                        $("#votingErrors").html(result);
+                    }
+
+                }
             });
         });
     </script>
