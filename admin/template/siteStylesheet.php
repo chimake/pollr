@@ -13,6 +13,8 @@
 <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
 <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
 <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/facebook.css" rel="stylesheet" type="text/css" />
+<link href="assets/css/sweetalert.css" rel="stylesheet" type="text/css" />
 
 <!-- DataTables -->
 <link href="assets/plugins/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />

@@ -13,6 +13,22 @@ if (isset($_POST['page']) && !empty($_POST['page'])) {
             $User = new User();
             echo $User->tablefetcher();
             break;
+        case 'addnewcat':
+            $User = new User();
+            echo $User->addnewcat();
+            break;
+        case 'editpage':
+            $User = new User();
+            echo $User->editpage();
+            break;
+        case 'editNew':
+            $User = new User();
+            echo $User->editNew();
+            break;
+        case 'deleteFuc':
+            $User = new User();
+            echo $User->deleteFuc();
+            break;
 
     }
 }
@@ -47,6 +63,74 @@ class User
         }else
         {
             echo $theQuery;
+        }
+    }
+
+    public function addnewcat(){
+        $cateName   =   $_POST['newcat'];
+        $cateParent =   $_POST['catParent'];
+        $userName   =   $_POST['userIdn'];
+        $time_keeper = date("Y-m-d h:i:sa");
+        if ($cateParent=='null'){
+            $insertNewCatQuery1 = "INSERT INTO categories SET catname='$cateName',catparent='0',disable='0',created_by='$userName',updated_by='0',created_on='$time_keeper',updated_on=''";
+            $runinsertcatQuery1  =   mysqli_query($this->db,$insertNewCatQuery1);
+            if ($runinsertcatQuery1){
+                echo "worked";
+            }else{
+                echo $insertNewCatQuery1;
+            }
+        }else{
+            $insertNewCatQuery = "INSERT INTO categories SET catname='$cateName',catparent='$cateParent',disable='0',created_by='$userName',updated_by='',created_on='$time_keeper',updated_on=''";
+            $runinsertcatQuery  =   mysqli_query($this->db,$insertNewCatQuery);
+            if ($runinsertcatQuery){
+                echo "worked";
+            }else{
+                echo $insertNewCatQuery;
+            }
+        }
+
+    }
+
+
+    public function editpage()
+    {
+        $cateIdn = $_POST['cateIdn'];
+        $editfetchQuery = "SELECT catid,catname,catparent FROM categories WHERE catid='$cateIdn'";
+        $runfetchQ = mysqli_query($this->db,$editfetchQuery);
+        $qFetch = mysqli_fetch_array($runfetchQ);
+        $encjson = json_encode($qFetch);
+        if ($runfetchQ){
+            echo $encjson;
+        }else{
+            echo $editfetchQuery;
+        }
+    }
+
+    public function editNew()
+    {
+        $thenewId = $_POST['newId'];
+        $newCat = $_POST['newCate'];
+        $newcatPare = $_POST['newparent'];
+        $Update = "UPDATE categories SET catname='$newCat',catparent='$newcatPare' WHERE catid='$thenewId'";
+        $runQuery = mysqli_query($this->db,$Update);
+        if ($runQuery){
+            echo "worked";
+        }else{
+            echo $Update;
+        }
+    }
+
+    public function deleteFuc()
+    {
+        $ItemId =$_POST['itemId'];
+        $tblName =$_POST['tablename'];
+        $columName =$_POST['columName'];
+        $deleteStat = "DELETE FROM $tblName WHERE $columName=$ItemId";
+        $runQuery = mysqli_query($this->db,$deleteStat);
+        if ($runQuery){
+            echo "worked";
+        }else{
+            echo $deleteStat;
         }
     }
 

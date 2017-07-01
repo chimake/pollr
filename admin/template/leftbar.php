@@ -40,7 +40,16 @@ $thecurrentPage = $_SERVER['REQUEST_URI'];
                     <a href="adminusers.php" class="<?php if ($page=="adminusers"){echo "active";}else{echo "";}?>"><i class="zmdi zmdi-accounts-outline"></i> <span> Admin Users </span></a>
                 </li>
                 <li>
-                    <a href="index.php" class="<?php if ($page=="pollrusers"){echo "active";}else{echo "";}?>"><i class="zmdi zmdi-male-female"></i> <span> Pollr App Users </span></a>
+                    <a href="pollrusers.php" class="<?php if ($page=="pollrusers"){echo "active";}else{echo "";}?>"><i class="zmdi zmdi-male-female"></i> <span> Pollr App Users </span></a>
+                </li>
+                <li>
+                    <a href="cateAdd.php" class="<?php if ($page=="cateAdd"){echo "active";}else{echo "";}?>"><i class="ti-notepad"></i> <span> Categories </span></a>
+                </li>
+                <li>
+                    <a href="postHandler.php" class="<?php if ($page=="postHandler"){echo "active";}else{echo "";}?>"><i class="ti-pencil-alt"></i> <span> Posts </span></a>
+                </li>
+                <li>
+                    <a href="voteHandler.php" class="<?php if ($page=="voteHanler"){echo "active";}else{echo "";}?>"><i class="dripicons-checkmark"></i> <span> Votes </span></a>
                 </li>
                 <li class="has_sub">
                     <a href="javascript:void(0);" class=""><span>All Html</span><span class="menu-arrow"></span> </a>

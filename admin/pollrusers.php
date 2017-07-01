@@ -4,7 +4,7 @@
     <?php include "plugin/session.php"; ?>
     <?php include "template/meta.php"; ?>
     <?php include "template/siteStylesheet.php"; ?>
-    <?php $page = "adminusers"; ?>
+    <?php $page = "pollrusers"; ?>
 
 </head>
 
@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box table-responsive">
-                            <h4 class="header-title m-t-0 m-b-30">Users</h4>
+                            <h4 class="header-title m-t-0 m-b-30">PollrApp Users</h4>
 
                             <table id="admin_grid" class="table table-striped table-bordered">
                                 <thead>
@@ -43,63 +43,40 @@
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>User Name</th>
-                                    <th>Approve</th>
-                                    <th>Can Create</th>
-                                    <th>Can Read</th>
-                                    <th>Can Update</th>
-                                    <th>Can Delete</th>
-                                    <th>Created By</th>
-                                    <th>Updated By</th>
-                                    <th>Created On</th>
-                                    <th>Updated On</th>
+                                    <th>Provider</th>
+                                    <th>Email</th>
+                                    <th>Registered On</th>
+                                    <th>Account Updated On</th>
+                                    <th>Disable</th>
+                                    <th>Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                $theQuery = "SELECT adminusers.userId,adminusers.last_name,adminusers.first_name,adminusers.user_name,"
-                                    . "adminusers.approve,adminusers.created_by,adminusers.updated_by,adminusers.updated_by,adminusers.created_on,"
-                                    . "adminusers.updated_on,permission.cancreate,permission.canupdate,permission.canread,permission.candelete "
-                                    . "FROM adminusers INNER JOIN permission ON permission.userId=adminusers.userId";
+                                $theQuery = "SELECT id,oauth_provider,first_name,last_name,user_name,email,created,modified,disable FROM users";
                                 $runtheQuery = mysqli_query($db, $theQuery);
-                                while ($q = mysqli_fetch_array($runtheQuery)) {
-                                    $userid = $q['userId'];
-                                    $thefirstname = $q['first_name'];
-                                    $thelastname = $q['last_name'];
-                                    $theusername = $q['user_name'];
-                                    $approve = $q['approve'];
-                                    $createdBy = $q['created_by'];
-                                    $updatedBy = $q['created_by'];
-                                    $created_on = $q['created_on'];
-                                    $updated_on = $q['updated_on'];
-                                    $cancreate = $q['cancreate'];
-                                    $canupdate = $q['canupdate'];
-                                    $canread = $q['canread'];
-                                    $candelete = $q['candelete'];
-                                    $getCreator = "SELECT user_name FROM adminusers WHERE userId='$createdBy'";
-                                    $runtheCreatorsQuery = mysqli_query($db, $getCreator);
-                                    $fetchThecreator = mysqli_fetch_array($runtheCreatorsQuery);
-                                    $thecreator = $fetchThecreator['user_name'];
-                                    if ($updatedBy != 0) {
-                                        $getUpdater = "SELECT user_name FROM adminusers WHERE userId='$updatedBy'";
-                                        $runTheUpdaterQuery = mysqli_query($db, $getUpdater);
-                                        $fetchTheupdater = mysqli_fetch_array($runTheUpdaterQuery);
-                                        $theupdater = $fetchTheupdater['user_name'];
-                                    }
-
+                                while ($qFetcher = mysqli_fetch_array($runtheQuery)){
+                                    $userid     =   $qFetcher['id'];
+                                    $first_name = $qFetcher['first_name'];
+                                    $provider   =   $qFetcher['oauth_provider'];
+                                    $last_name = $qFetcher['last_name'];
+                                    $user_name = $qFetcher['user_name'];
+                                    $email = $qFetcher['email'];
+                                    $created    =   $qFetcher['created'];
+                                    $updated    =   $qFetcher['modified'];
+                                    $disabled   =   $qFetcher['disable'];
                                     echo "<tr>"
-                                        . "<td>$thefirstname</td>"
-                                        . "<td>$thelastname</td>"
-                                        . "<td>$theusername</td>"
-                                        . "<td><input type='checkbox'" . (($approve == 1) ? 'checked="checked"' : '') . "class='disab' data-uidl='$userid'></td>"
-                                        . "<td><input type='checkbox'" . (($cancreate == 1) ? 'checked="checked"' : '') . "class='disab' data-uidl='$userid'></td>"
-                                        . "<td><input type='checkbox'" . (($canread == 1) ? 'checked="checked"' : '') . "class='disab' data-uidl='$userid'></td>"
-                                        . "<td><input type='checkbox'" . (($canupdate == 1) ? 'checked="checked"' : '') . "class='disab' data-uidl='$userid'></td>"
-                                        . "<td><input type='checkbox'" . (($candelete == 1) ? 'checked="checked"' : '') . "class='disab' data-uidl='$userid'></td>"
-                                        . "<td>$thecreator</td>"
-                                        . "<td>$theupdater</td>"
-                                        . "<td>$created_on</td>"
-                                        . "<td>$updated_on</td>"
-                                        . "</tr>";
+                                            ."<td>$first_name</td>"
+                                            ."<td>$last_name</td>"
+                                            ."<td>$user_name</td>"
+                                            ."<td>$provider</td>"
+                                            ."<td>$email</td>"
+                                            ."<td>$created</td>"
+                                            ."<td>$updated</td>"
+                                            ."<td><input type='checkbox'" . (($disabled == 1) ? 'checked="checked"' : '') . "class='disab' data-uidl='$userid'></td>"
+                                            ."<td></td>"
+                                        ."</tr>";
+
                                 }
                                 ?>
 
@@ -110,15 +87,12 @@
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>User Name</th>
-                                    <th>Approve</th>
-                                    <th>Can Create</th>
-                                    <th>Can Read</th>
-                                    <th>Can Update</th>
-                                    <th>Can Delete</th>
-                                    <th>Created By</th>
-                                    <th>Updated By</th>
-                                    <th>Created On</th>
-                                    <th>Updated On</th>
+                                    <th>Provider</th>
+                                    <th>Email</th>
+                                    <th>Registered On</th>
+                                    <th>Account Updated On</th>
+                                    <th>Disable</th>
+                                    <th>Delete</th>
                                 </tr>
                                 </tfoot>
                             </table>
