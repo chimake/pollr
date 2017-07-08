@@ -197,9 +197,9 @@ $loginURL = $helper->getLoginUrl($redirectURL, $fbPermissions);
                     thesex = $('#thesex').val();
                     page = 'usersregister';
                     var dataString = 'thefirstname=' + thefirstname + '&thelastname=' + thelastname + '&theemailaddr=' + theemailaddr + '&thepassword=' + thepassword + '&thesex=' + thesex + '&page=' + page;
-                    if (thefirstname == '' || thelastname == '' || thepassword == '' || thecpassword == '' || thesex == '' ) {
+                    if (thefirstname === '' || thelastname === '' || thepassword === '' || thecpassword === '' || thesex === '' ) {
                         alert('All fields are requried');
-                    } else if (thepassword != thecpassword) {
+                    } else if (thepassword !== thecpassword) {
                         alert('passwords do not match');
                     } else {
                         $.ajax({
@@ -208,9 +208,9 @@ $loginURL = $helper->getLoginUrl($redirectURL, $fbPermissions);
                             data: dataString,
                             cache: false,
                             success: function (result) {
-                                if (result == 'picked') {
-                                    alert('User Name Or Email Address Has Been Used')
-                                } else if (result == 'done') {
+                                if (result === 'picked') {
+                                    alert('User Name Or Email Address Has Been Used');
+                                } else if (result === 'done') {
                                     $('#loginTb').trigger('click');
                                 } else {
                                     $('#errorhandler').html(result);
@@ -225,7 +225,7 @@ $loginURL = $helper->getLoginUrl($redirectURL, $fbPermissions);
                     var mypassword = $('#mypassword').val();
                     page = 'login';
                     var datastring = 'myemail=' + myemail + '&mypassword=' + mypassword + '&page=' + page;
-                    if (myemail == '' || mypassword == '') {
+                    if (myemail === '' || mypassword === '') {
                         alert('All fields are required!');
                     } else {
                         $.ajax({
@@ -234,9 +234,9 @@ $loginURL = $helper->getLoginUrl($redirectURL, $fbPermissions);
                             data: datastring,
                             cache: false,
                             success: function (result) {
-                                if (result == 'Logged in!') {
+                                if (result === 'Logged in!') {
                                     window.location.href="index.php";
-                                } else if (result == 'User Name or Password is incorrect') {
+                                } else if (result === 'User Name or Password is incorrect') {
                                     alert(result);
                                 } else {
                                     $('#errorhandler2').html(result);
