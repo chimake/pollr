@@ -43,7 +43,7 @@ $thecurrentPage = $_SERVER['REQUEST_URI'];
                     <a href="pollrusers.php" class="<?php if ($page=="pollrusers"){echo "active";}else{echo "";}?>"><i class="zmdi zmdi-male-female"></i> <span> Pollr App Users </span></a>
                 </li>
                 <li>
-                    <a href="cateAdd.php" class="<?php if ($page=="cateAdd"){echo "active";}else{echo "";}?>"><i class="ti-notepad"></i> <span> Categories </span></a>
+                    <a href="cateAdd.php" class="<?php if ($page=="pollruscaters"){echo "active";}else{echo "";}?>"><i class="ti-notepad"></i> <span> Categories </span></a>
                 </li>
                 <li>
                     <a href="postHandler.php" class="<?php if ($page=="postHandler"){echo "active";}else{echo "";}?>"><i class="ti-pencil-alt"></i> <span> Posts </span></a>

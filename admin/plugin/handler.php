@@ -80,7 +80,7 @@ class User
                 echo $insertNewCatQuery1;
             }
         }else{
-            $insertNewCatQuery = "INSERT INTO categories SET catname='$cateName',catparent='$cateParent',disable='0',created_by='$userName',updated_by='',created_on='$time_keeper',updated_on=''";
+            $insertNewCatQuery = "INSERT INTO categories SET catname='$cateName',catparent='$cateParent',disable='0',created_by='$userName',updated_by='0',created_on='$time_keeper',updated_on=''";
             $runinsertcatQuery  =   mysqli_query($this->db,$insertNewCatQuery);
             if ($runinsertcatQuery){
                 echo "worked";

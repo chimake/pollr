@@ -74,7 +74,7 @@
                                             ."<td>$created</td>"
                                             ."<td>$updated</td>"
                                             ."<td><input type='checkbox'" . (($disabled == 1) ? 'checked="checked"' : '') . "class='disab' data-uidl='$userid'></td>"
-                                            ."<td></td>"
+                                            ."<td><button class='btn btn-danger deleuser' data-polluser='$userid'>Delete</button></td>"
                                         ."</tr>";
 
                                 }
