@@ -14,8 +14,8 @@ use Facebook\Exceptions\FacebookSDKException;
 /*
  * Configuration and setup Facebook SDK
  */
-$appId 			= '1916123628660154'; //Facebook App ID
-$appSecret 		= '6efe298802fb1131bfa2c1de64157bd9'; //Facebook App Secret
+$appId 			= '1706495432993220'; //Facebook App ID
+$appSecret 		= '5d1da08b3ff13b83b58f6a47ca1c3435'; //Facebook App Secret
 $redirectURL 	= 'http://localhost/pollrApp/'; //Callback URL
 $fbPermissions 	= array('email');  //Optional permissions
 
