@@ -4,7 +4,7 @@
     <?php include "plugin/session.php"; ?>
     <?php include "template/meta.php"; ?>
     <?php include "template/siteStylesheet.php"; ?>
-    <?php $page = "pollruscaters"; ?>
+    <?php $page = "pollrusvote"; ?>
 
 </head>
 
@@ -41,81 +41,47 @@
                                 <i class="fa fa-plus"></i> Create New
                             </a>
                             <div id="tblErrors"></div>
-                            <table class="table table-striped table-bordered" id="post-grid">
+                            <table class="table table-striped table-bordered" id="votegrid">
                                 <thead>
                                     <tr>
                                         <td>Post Title</td>
-                                        <td>First Option</td>
-                                        <td>Second Option</td>
-                                        <td>Third Option</td>
-                                        <td>Fourth Option</td>
-                                        <td>Category</td>
                                         <td>User</td>
-                                        <td>Approve</td>
-                                        <td>Date Added</td>
-                                        <td>Category Added By</td>
-                                        <td>Category Updated By</td>
+                                        <td>Total Votes</td>
+                                        <td>Votes Breakdown</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                        $selectQuery = "SELECT * FROM posttbl";
-                                        $fetchSelectRun = mysqli_query($db,$selectQuery);
-                                        while($fetchSelect = mysqli_fetch_array($fetchSelectRun)){
-                                                $postId = $fetchSelect['postid'];
-                                                $postTitle = $fetchSelect['post_title'];
-                                                $user_id = $fetchSelect['userid'];
-                                                $option1 = $fetchSelect['option1'];
-                                                $option2 = $fetchSelect['option2'];
-                                                $option3 = $fetchSelect['option3'];
-                                                $option4 = $fetchSelect['option4'];
-                                                $category = $fetchSelect['category'];
-                                                $approve = $fetchSelect['approve'];
-                                                $created_by = $fetchSelect['created_by'];
-                                                $update_by = $fetchSelect['update_by'];
-                                                $created_on = $fetchSelect['created_on'];
-                                                $updated_on = $fetchSelect['updated_on'];
-                                                $getUsernameQuery = "SELECT user_name FROM users where oauth_uid='$user_id'";
-                                                $runusernameQuery = mysqli_query($db,$getUsernameQuery);
-                                                $gettheusername = mysqli_fetch_array($runusernameQuery);
-                                                $postUser = $gettheusername['user_name'];
-                                                $cateAdded = "SELECT user_name FROM adminusers WHERE userId='$created_by'";
-                                                $runcateaddQuery = mysqli_query($db,$cateAdded);
-                                                $getTheusername = mysqli_fetch_array($runcateaddQuery);
-                                                $cateUpdate = "SELECT user_name FROM adminusers WHERE userId='$update_by'";
-                                                $runupdateQuery = mysqli_query($db,$cateUpdate);
-                                                $getheUpdateusername = mysqli_fetch_array($runupdateQuery);
-                                                echo "<tr>"
-                                                    ."<td>$postTitle</td>"
-                                                    ."<td>$option1</td>"
-                                                    ."<td>$option2</td>"
-                                                    ."<td>$option3</td>"
-                                                    ."<td>$option4</td>"
-                                                    ."<td>$category</td>"
-                                                    ."<td>$postUser</td>"
-                                                    ."<td><input type='checkbox'" . (($approve == 1) ? 'checked="checked"' : '') . "class='disab' data-uidl='$postId'></td>"
-                                                    ."<td>$created_on</td>"
-                                                    ."<td>$getTheusername</td>"
-                                                    ."<td>$getheUpdateusername</td>"
-                                                    ."</tr>";
-
-                                        }
+                                        $selectQuery = "SELECT COUNT(vote.postid) AS tot,posttbl.postid,posttbl.userid FROM vote INNER JOIN posttbl ON vote.postid=posttbl.postid GROUP by posttbl.postid,posttbl.userid";
+                                        $fetchSelectRun = mysqli_query($db, $selectQuery);
+                                    while ($fetchSelect = mysqli_fetch_array($fetchSelectRun)) {
+                                        $total = $fetchSelect['tot'];
+                                        $postid = $fetchSelect['postid'];
+                                        $userId = $fetchSelect['userid'];
+                                        $selePostName = "SELECT post_title FROM posttbl where postid='$postid'";
+                                        $runPOstQuery  = mysqli_query($db,$selePostName);
+                                        $fetchPostQuery = mysqli_fetch_array($runPOstQuery);
+                                        $postTitle = $fetchPostQuery['post_title'];
+                                        $seleuserQuery = " SELECT user_name from users where id='$userId'";
+                                        $runuserQuery = mysqli_query($db, $seleuserQuery);
+                                        $fetchuserQuery = mysqli_fetch_array($runuserQuery);
+                                        $userName = $fetchuserQuery['user_name'];
+                                        echo"<tr>"
+                                        ."<td>$postTitle</td>"
+                                        ."<td>$userName</td>"
+                                        ."<td>$total</td>"
+                                        ."<td><a href='totalbreadown.php?postid=$postid' class='btn btn-success'>View Vote Breakdown</a></td>"
+                                        ."</tr>";
+                                    }
                                         
                                     ?>
                                 </tbody>
                                 <tfoot>
-                                    <tr>
+                                   <tr>
                                         <td>Post Title</td>
-                                        <td>First Option</td>
-                                        <td>Second Option</td>
-                                        <td>Third Option</td>
-                                        <td>Fourth Option</td>
-                                        <td>Category</td>
                                         <td>User</td>
-                                        <td>Approve</td>
-                                        <td>Date Added</td>
-                                        <td>Category Added By</td>
-                                        <td>Category Updated By</td>
+                                        <td>Total Votes</td>
+                                        <td>Votes Breakdown</td>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -230,7 +196,7 @@
 <script src="assets/js/sweetalert.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#post-grid').dataTable();
+        $('#votegrid').dataTable();
 
     });
     $("#svbtn").click(function () {

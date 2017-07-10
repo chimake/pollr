@@ -66,10 +66,10 @@ include_once 'facebooklogin.php';
                                     $minutes = $dateDiff%60;
                                     echo "<div class=\"post-content\">"
                                         ."<ul class='list-group trip-details'>"
-                                         ."<li class='list-group-item'><input class='optionChosen' type='radio' id='choice1' data-choice='firstchoice' data-postid='$postId' value='$fistOption' /><lable for='choice1' class='mixed'>$fistOption</lable></li>"
-                                        ."<li class='list-group-item'><input class='optionChosen' type='radio' id='choice2' data-choice='secChoice' data-postid='$postId' value='$option2' /><lable for='choice2' class='mixed'>$option2</lable></li>"
-                                        ."<li class='list-group-item'><input class='optionChosen' type='radio' id='choice3' data-choice='thirdChoice' data-postid='$postId' value='$option3' /><lable for='choice2' class='mixed'>$option3</lable></li>"
-                                        ."<li class='list-group-item'><input class='optionChosen' type='radio' id='choice4' data-choice='fourthChoice' data-postid='$postId' value='$option4' /><lable for='choice2' class='mixed'>$option4</lable></li>"
+                                         ."<li class='list-group-item'><input class='optionChosen' type='radio' id='choice1' data-choice='option1' data-postid='$postId' value='$fistOption' /><lable for='choice1' class='mixed'>$fistOption</lable></li>"
+                                        ."<li class='list-group-item'><input class='optionChosen' type='radio' id='choice2' data-choice='option2' data-postid='$postId' value='$option2' /><lable for='choice2' class='mixed'>$option2</lable></li>"
+                                        ."<li class='list-group-item'><input class='optionChosen' type='radio' id='choice3' data-choice='option3' data-postid='$postId' value='$option3' /><lable for='choice2' class='mixed'>$option3</lable></li>"
+                                        ."<li class='list-group-item'><input class='optionChosen' type='radio' id='choice4' data-choice='option4' data-postid='$postId' value='$option4' /><lable for='choice2' class='mixed'>$option4</lable></li>"
                                         ."</ul>"
                                         ."<div class=\"post-container\">"
                                         ." <img src=\"$picturue\" alt=\"user\" class=\"profile-photo-md pull-left\" />"
@@ -196,7 +196,7 @@ include_once 'facebooklogin.php';
             });
         });
         $(".optionChosen").click(function () {
-           var choice =$(this).val();
+           var choice =$(this).data("choice");
            var IDn = $(this).attr('id');
 
            var postId =$(this).data("postid");

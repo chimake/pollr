@@ -46,10 +46,10 @@ $thecurrentPage = $_SERVER['REQUEST_URI'];
                     <a href="cateAdd.php" class="<?php if ($page=="pollruscaters"){echo "active";}else{echo "";}?>"><i class="ti-notepad"></i> <span> Categories </span></a>
                 </li>
                 <li>
-                    <a href="postHandler.php" class="<?php if ($page=="postHandler"){echo "active";}else{echo "";}?>"><i class="ti-pencil-alt"></i> <span> Posts </span></a>
+                    <a href="postHandler.php" class="<?php if ($page=="pollruscaters"){echo "active";}else{echo "";}?>"><i class="ti-pencil-alt"></i> <span> Posts </span></a>
                 </li>
                 <li>
-                    <a href="voteHandler.php" class="<?php if ($page=="voteHanler"){echo "active";}else{echo "";}?>"><i class="dripicons-checkmark"></i> <span> Votes </span></a>
+                    <a href="voteHandler.php" class="<?php if ($page=="pollrusvote"){echo "active";}else{echo "";}?>"><i class="dripicons-checkmark"></i> <span> Votes </span></a>
                 </li>
                 <li class="has_sub">
                     <a href="javascript:void(0);" class=""><span>All Html</span><span class="menu-arrow"></span> </a>

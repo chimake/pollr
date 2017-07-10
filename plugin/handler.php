@@ -1,9 +1,9 @@
 <?php
 include_once'../User.php';
 define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'justbllv_pollrApp');
-define('DB_PASSWORD', 'Lonewolf()09');
-define('DB_DATABASE', 'justbllv_polladm');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_DATABASE', 'pollr');
 
 if (isset($_POST['page']) && !empty($_POST['page'])) {
     $action = $_POST['page'];
