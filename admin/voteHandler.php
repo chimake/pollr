@@ -70,7 +70,7 @@
                                         ."<td>$postTitle</td>"
                                         ."<td>$userName</td>"
                                         ."<td>$total</td>"
-                                        ."<td><a href='totalbreadown.php?postid=$postid' class='btn btn-success'>View Vote Breakdown</a></td>"
+                                        ."<td><a href='votebreakdown.php?postid=$postid' class='btn btn-success'>View Vote Breakdown</a></td>"
                                         ."</tr>";
                                     }
                                         
